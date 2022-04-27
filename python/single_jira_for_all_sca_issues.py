@@ -29,8 +29,8 @@ issues_dict = issues_response_json['issues']['vulnerabilities']
 # Specify jira ticket details
 jira_project_key = 'GOOF' # Specify a project in your Jira org
 jira_issue_type = 'Task' # Specify an issue type (e.g., Task or Epic) 
-project_id = 'bc498bb1-1c46-4ad8-b5c7-2ad7bdeafb39' #Specify a Snyk project ID
-issue_id = 'SNYK-JAVA-COMFASTERXMLJACKSONCORE-31520'
+project_id = 'bc498bb1-1c46-4ad8-b5c7-2ad7bdeafb39' # Specify a Snyk project ID
+issue_id = 'SNYK-JAVA-COMFASTERXMLJACKSONCORE-31520' # Specify Snyk issue ID
 
 description = ""
 
@@ -50,21 +50,6 @@ body = {
             'description': description
         }
     }
-
-#body = f""" 
-#    {{
-#        "fields": {{
-#            "project": {{
-#                "key": "{jira_project_key}"
-#            }},
-#            "issuetype": {{
-#                "name": "{jira_issue_type}"
-#            }},
-#            "summary": "Direct and/or transitive issues identified for {package_name}@{package_version}",
-#            "description": "test"
-#        }}
-#    }}
-#"""
 
 print(json.dumps(body))
 response = requests.post('{}/org/{}/project/{}/issue/{}/jira-issue'.format(BASE_URL, os.getenv(ORG_ID), project_id, issue_id), headers=headers, data=json.dumps(body))
